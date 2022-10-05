@@ -8,14 +8,15 @@ public class PlayerLocation : MonoBehaviour
     public AccessGPS _location;
     GameObject _player;
     bool debounce = true;
+    Player playerScript;
 
     // Start is called before the first frame update
     void Start()
     {
         _gameManager = GameObject.Find("GameManager");
         _location = _gameManager.GetComponent<AccessGPS>();
+        playerScript = GetComponent<Player>();
         _player = this.gameObject;
-
     }
 
     // Update is called once per frame
@@ -37,6 +38,16 @@ public class PlayerLocation : MonoBehaviour
         yield return new WaitForSeconds(1);
         debounce = true;
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) 
+    {
+        if(collision.gameObject.tag == "Crate")
+        {
+            playerScript.points += 10;
+            playerScript.SavePlayer();
+            Destroy(collision.gameObject);
+        }    
     }
 
 
