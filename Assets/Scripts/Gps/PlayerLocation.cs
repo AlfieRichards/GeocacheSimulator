@@ -6,7 +6,7 @@ public class PlayerLocation : MonoBehaviour
 {
     public GameObject _gameManager;
     public AccessGPS _location;
-    GameObject player;
+    GameObject _player;
 
 
     // Start is called before the first frame update
@@ -14,14 +14,14 @@ public class PlayerLocation : MonoBehaviour
     {
         _gameManager = GameObject.Find("GameManager");
         _location = _gameManager.GetComponent<AccessGPS>();
-        player = this.gameObject;
+        _player = this.gameObject;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        player.transform.position = new Vector2(_location.GetLongitude(),_location.GetLatitude());
+        _player.transform.position = new Vector2(_location.GetLongitude(),_location.GetLatitude());
 
     }
 
