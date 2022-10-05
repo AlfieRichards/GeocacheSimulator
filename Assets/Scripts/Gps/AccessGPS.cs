@@ -59,6 +59,11 @@ public class AccessGPS : MonoBehaviour
         return lon;
 
     }
+    public float GetHeading()
+    {
+        float rot = -Input.compass.magneticHeading;
+        return rot;
+    }
 
 
     // Update is called once per frame

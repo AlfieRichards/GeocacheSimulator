@@ -7,7 +7,7 @@ public class PlayerLocation : MonoBehaviour
     public GameObject _gameManager;
     public AccessGPS _location;
     GameObject _player;
-
+    bool debounce = true;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +21,22 @@ public class PlayerLocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _player.transform.position = new Vector2(_location.GetLongitude(),_location.GetLatitude());
+        if (debounce)
+        {
+            debounce = false;
+            MovePlayer();
+        }
+        
 
+    }
+
+    IEnumerator MovePlayer()
+    {
+        _player.transform.position = new Vector2(_location.GetLongitude(),_location.GetLatitude());
+        _player.transform.rotation = Quaternion.Euler(0, _location.GetHeading(), 0);
+        yield return new WaitForSeconds(1);
+        debounce = true;
+        
     }
 
 
