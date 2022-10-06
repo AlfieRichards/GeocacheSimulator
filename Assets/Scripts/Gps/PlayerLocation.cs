@@ -47,15 +47,7 @@ public class PlayerLocation : MonoBehaviour
         debounce = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) 
-    {
-        if(collision.gameObject.tag == "Crate")
-        {
-            playerScript.points += 10;
-            playerScript.SavePlayer();
-            Destroy(collision.gameObject);
-        }    
-    }
+    
 
 
 }

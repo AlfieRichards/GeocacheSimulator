@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 514195901949899773}
   - component: {fileID: 514195901949899762}
   - component: {fileID: 2509148931859652031}
+  - component: {fileID: 8250332066960706058}
+  - component: {fileID: 8265894453597374185}
   m_Layer: 0
   m_Name: Crate
   m_TagString: Crate
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 514195901949899760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 29.8179, y: 6583.8247, z: 0}
-  m_LocalScale: {x: 0.0023747666, y: 0.0023747666, z: 0.0023747666}
+  m_LocalScale: {x: 0.0023747666, y: 0.0023747666, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3047129868730307307}
@@ -96,12 +98,44 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 6.47
+--- !u!95 &8250332066960706058
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514195901949899760}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 80eecee57773c7444809ac8cb938d43f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8265894453597374185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514195901949899760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f872947da58f64895b21af7c7e8a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4312125787427180949
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +146,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3047129868730307307}
   - component: {fileID: 2597137647202379075}
-  - component: {fileID: 4572470377828334005}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -187,23 +220,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4572470377828334005
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4312125787427180949}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 84256afdeeac55b4ab56c1c573faa130, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
