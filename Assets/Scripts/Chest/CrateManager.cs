@@ -6,7 +6,7 @@ public class CrateManager : MonoBehaviour
 {
     //simple values
     public int points;
-    public float[] coordinates = {0f,0f};
+    float[] coordinates = {0f,0f};
     public List<float[]> chests = new List<float[]>();
     public float[][] chestsArray;
 
@@ -91,8 +91,9 @@ public class CrateManager : MonoBehaviour
         chestsArray = chests.ToArray();
     }
 
+    bool hasValue = false;
+    bool hasValue2 = false;
     bool empty = false;
-    bool tEmpty = false;
     public void CollectCrate(int index)
     {
         Debug.Log("FUCK: " + index);
@@ -104,19 +105,30 @@ public class CrateManager : MonoBehaviour
         }
         foreach (float[] tArray in chestsArray)
         {
-            foreach(float value in tArray)
+            if(tArray[0] != 0)
             {
-                if(value != 0)
+                hasValue = true;
+            }
+            else
+            {
+                if(!hasValue)
                 {
-                    tEmpty = false;
+                    hasValue = false;
                 }
-                else
+            }
+            if(tArray[1] != 0)
+            {
+                hasValue2 = true;
+            }
+            else
+            {
+                if(!hasValue2)
                 {
-                    tEmpty = true;
+                    hasValue2 = false;
                 }
             }
         }
-        if(tEmpty){empty = true;}
+        if(!hasValue && !hasValue2){empty = true;}
     }
 
     // Update is called once per frame
@@ -125,6 +137,7 @@ public class CrateManager : MonoBehaviour
         if(empty)
         {
             Debug.Log("No chests found in save system");
+            chests.Clear();
             GenerateChests();
             empty = false;
         }
