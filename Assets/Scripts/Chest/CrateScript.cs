@@ -34,7 +34,7 @@ public class CrateScript : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("collision with player");
-            playerScript.points += 10;
+            playerScript.points += 1;
             playerScript.SavePlayer();
             ExplodeCrate();
         }
