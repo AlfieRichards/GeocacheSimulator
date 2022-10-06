@@ -6,11 +6,15 @@ public class CrateScript : MonoBehaviour
 {
     Animator animator;
     Player playerScript;
+    CrateManager crateScript;
+
+    public int crateIndex;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        crateScript = GameObject.Find("GameManager").GetComponent<CrateManager>();
         playerScript = GameObject.Find("Player").GetComponent<Player>();
         animator = gameObject.GetComponent<Animator>();
         animator.Play("CrateAnim");
@@ -42,6 +46,7 @@ public class CrateScript : MonoBehaviour
 
     void DestroyCrate()
     {
+        crateScript.CollectCrate(crateIndex);
         Destroy(gameObject);
     }
 
