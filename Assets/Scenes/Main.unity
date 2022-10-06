@@ -330,7 +330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108375806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.077, y: 6584.117, z: 0}
+  m_LocalPosition: {x: 30.165, y: 6584.117, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -878,7 +878,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717019318}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cac1f176da4b1545825c0a1a6f75be7, type: 3}
   m_Name: 
@@ -1185,9 +1185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
-  coordinates:
-  - 0
-  - 0
   topRightCoordinate: {x: 30.2922, y: 6584.396}
   BottomLeftCoordinate: {x: 29.821, y: 6583.826}
   cratePrefab: {fileID: 514195901949899760, guid: c6f5f6b6afb85b2468a3558b2e964d7e, type: 3}
@@ -1198,7 +1195,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798935837}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd9fc56d30a93cf468b91f54fb7d7fe4, type: 3}
   m_Name: 
