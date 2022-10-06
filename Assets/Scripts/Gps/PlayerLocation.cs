@@ -46,16 +46,4 @@ public class PlayerLocation : MonoBehaviour
     void ResetGpsDelay(){
         debounce = true;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision) 
-    {
-        if(collision.gameObject.tag == "Crate")
-        {
-            playerScript.points += 1;
-            playerScript.SavePlayer();
-            Destroy(collision.gameObject);
-        }    
-    }
-
-
 }
