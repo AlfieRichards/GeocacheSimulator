@@ -34,8 +34,10 @@ public class Player : MonoBehaviour
         AccessGPS gpsScript = manager.GetComponent(typeof(AccessGPS)) as AccessGPS;
 
         //adds cords to array
-        coordinates[0] = gpsScript.GetLatitude();
-        coordinates[0] = gpsScript.GetLongitude();
+        coordinates[0] = gpsScript.GetLongitudeToX();
+        coordinates[1] = gpsScript.GetLatitudeToY();
+        Debug.Log(gpsScript.ConvertLongitudeToX(50.791748f));
+        Debug.Log(gpsScript.ConvertLatitudeToY(0.273161f));
     }
 
 
@@ -43,6 +45,8 @@ public class Player : MonoBehaviour
     {
         FirstLoad();
         Sync();
+        //tells us the xyz for our range of lat and long
+        GetCoordinates();
     }
 
 

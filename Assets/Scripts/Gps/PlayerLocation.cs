@@ -13,6 +13,7 @@ public class PlayerLocation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Player loc start");
         _gameManager = GameObject.Find("GameManager");
         _location = _gameManager.GetComponent<AccessGPS>();
         playerScript = GetComponent<Player>();
@@ -22,7 +23,7 @@ public class PlayerLocation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (debounce)
+        if (_location.connected && debounce)
         {
             debounce = false;
             MovePlayer();
@@ -31,13 +32,19 @@ public class PlayerLocation : MonoBehaviour
 
     }
 
-    IEnumerator MovePlayer()
+    void MovePlayer()
     {
-        _player.transform.position = new Vector2(_location.GetLongitude(),_location.GetLatitude());
+        Debug.Log("Moving player");
+        _player.transform.position = new Vector2(_location.GetLongitudeToX(),_location.GetLatitudeToY());
         _player.transform.rotation = Quaternion.Euler(0, _location.GetHeading(), 0);
-        yield return new WaitForSeconds(1);
-        debounce = true;
+        playerScript.coordinates[0] = _location.GetLongitudeToX();
+        playerScript.coordinates[1] = _location.GetLatitudeToY();
+        Invoke("ResetGpsDelay", 5);
         
+    }
+
+    void ResetGpsDelay(){
+        debounce = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) 

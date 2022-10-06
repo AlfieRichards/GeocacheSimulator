@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class AccessGPS : MonoBehaviour
 {
+    public bool connected = false;
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        // Check if the user has location service enabled.
-        if (!Input.location.isEnabledByUser)
-            yield break;
 
-        // Starts the location service.
+        //checks if the app has permissions needed to access location
+        if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.FineLocation)) 
+        {
+            Debug.Log("No FineLocation permission, requesting");
+            UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.FineLocation);
+        }
+
+        // Wait until the editor and unity remote are connected before starting a location service
+        Debug.Log("Waiting");
+        yield return new WaitForSeconds(5);
+ 
+        // Check if location services are enabled
+        if (!Input.location.isEnabledByUser)
+        {
+            Debug.Log("Location is not enabled on this device");
+            yield break;
+        }
+ 
+        // Start service before querying location
         Input.location.Start();
+        Debug.Log("Service started");
+
+        //unity remote 5 takes a while to update, without this it assumes im trying to check the status without enabling locationj
+        yield return new WaitForSeconds(5);
 
         // Waits until the location service initializes
         int maxWait = 20;
@@ -39,26 +59,44 @@ public class AccessGPS : MonoBehaviour
         {
             // If the connection succeeded, this retrieves the device's current location and displays it in the Console window.
             print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
+            connected = true;
         }
 
-        // Stops the location service if there is no need to query location updates continuously.
+        // Pings the location every 5s
         Input.location.Stop();
+        yield return new WaitForSeconds(5);
+        Input.location.Start();
     }
 
-    public float GetLatitude()
-    {
-        float lat = Input.location.lastData.latitude;
-        lat *= 1000f;
-        return lat;
-        
-    }
-    public float GetLongitude()
+    public float GetLongitudeToX()
     {
         float lon = Input.location.lastData.longitude;
-        lon *= 1000f;
-        return lon;
-
+        float x = lon * 2 * Mathf.PI * 6378137 / 2 / 180;
+        return x/1000;
     }
+
+    public float GetLatitudeToY()
+    {
+        float lat = Input.location.lastData.latitude;
+        float y = Mathf.Log(Mathf.Tan((90 + lat) * Mathf.PI / 360)) / (Mathf.PI / 180);
+        y = y * 2 * Mathf.PI * 6378137 / 2 / 180;
+        return y/1000;
+    }
+
+    public float ConvertLongitudeToX(float lon)
+    {        
+        float x = lon * 2 * Mathf.PI * 6378137 / 2 / 180;
+        return x/1000;
+    }
+
+    public float ConvertLatitudeToY(float lat)
+    {        
+        float y = Mathf.Log(Mathf.Tan((90 + lat) * Mathf.PI / 360)) / (Mathf.PI / 180);
+        y = y * 2 * Mathf.PI * 6378137 / 2 / 180;
+        return y/1000;
+    }
+
+
     public float GetHeading()
     {
         float rot = -Input.compass.magneticHeading;

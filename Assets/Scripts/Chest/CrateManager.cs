@@ -50,7 +50,7 @@ public class CrateManager : MonoBehaviour
             Vector2 finalRandomLoc = new Vector2(randomX, randomY);
             float[] crateLocation = {randomX, randomY};
             chests.Add(crateLocation);
-            Instantiate(cratePrefab, finalRandomLoc, Quaternion.identity);
+            //Instantiate(cratePrefab, finalRandomLoc, Quaternion.identity);
         }
     }
 
