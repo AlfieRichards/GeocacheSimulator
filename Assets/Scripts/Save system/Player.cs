@@ -40,6 +40,15 @@ public class Player : MonoBehaviour
         Debug.Log(gpsScript.ConvertLatitudeToY(0.273161f));
     }
 
+    private void GetCrates()
+    {
+        //finds required components and objects
+        GameObject manager = GameObject.Find("GameManager");
+        CrateManager chestScript = manager.GetComponent(typeof(CrateManager)) as CrateManager;
+
+        chests = chestScript.chests;
+    }
+
 
     private void Start() 
     {

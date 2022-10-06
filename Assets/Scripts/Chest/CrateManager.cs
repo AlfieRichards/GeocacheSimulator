@@ -26,14 +26,34 @@ public class CrateManager : MonoBehaviour
         coordinates = playerData.coordinates;
     }
 
+    void saveData()
+    {
+        //finds required components and objects
+        GameObject player = GameObject.Find("Player");
+        Player playerData = player.GetComponent(typeof(Player)) as Player;
+     
+        playerData.SavePlayer();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        LoadData();
         if(chests.Count == 0)
         {
             Debug.Log("No chests found in save system");
             GenerateChests();
         }
+        else
+        {
+            foreach(float[] chest in chests)
+            {
+                //instantiates chest
+                Vector2 finalLoc = new Vector2(chest[0], chest[1]);
+                Instantiate(cratePrefab, finalLoc, Quaternion.identity);
+            }
+        }
+        saveData();
         
     }
 
@@ -50,7 +70,7 @@ public class CrateManager : MonoBehaviour
             Vector2 finalRandomLoc = new Vector2(randomX, randomY);
             float[] crateLocation = {randomX, randomY};
             chests.Add(crateLocation);
-            //Instantiate(cratePrefab, finalRandomLoc, Quaternion.identity);
+            Instantiate(cratePrefab, finalRandomLoc, Quaternion.identity);
         }
     }
 
