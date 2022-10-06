@@ -8,7 +8,7 @@ public class PlayerData
 {
     //simple values
     public float[] coordinates = {0f,0f};
-    public int points;
+    public int points = 0;
     public List<float[]> chests = new List<float[]>();
 
 

@@ -6,7 +6,7 @@ using System.IO;
 public class Player : MonoBehaviour
 {
     //simple values
-    public int points;
+    public int points = 0;
     public float[] coordinates = {0f,0f};
     public List<float[]> chests = new List<float[]>();
 

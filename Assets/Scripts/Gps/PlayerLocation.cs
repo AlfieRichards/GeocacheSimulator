@@ -51,7 +51,7 @@ public class PlayerLocation : MonoBehaviour
     {
         if(collision.gameObject.tag == "Crate")
         {
-            playerScript.points += 10;
+            playerScript.points += 1;
             playerScript.SavePlayer();
             Destroy(collision.gameObject);
         }    

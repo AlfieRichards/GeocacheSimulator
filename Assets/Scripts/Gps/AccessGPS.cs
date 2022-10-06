@@ -28,7 +28,7 @@ public class AccessGPS : MonoBehaviour
         }
  
         // Start service before querying location
-        Input.location.Start();
+        Input.location.Start(1f);
         Debug.Log("Service started");
 
         //unity remote 5 takes a while to update, without this it assumes im trying to check the status without enabling locationj
